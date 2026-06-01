@@ -8,7 +8,7 @@ Create a directory DIR_NAME and populate with definition files:
 
 - container.def
 - dot-emacs
-- pepare.sh
+- prepare.sh
 
 Prepared examples:
 
@@ -44,11 +44,21 @@ For VS Code (Tunnels) environments, use:
 bash scripts/prepare-vscode.sh DIR_NAME
 ```
 
-### 4. Run emacs in the container
+### 4. Run the container
+
+For Emacs environments:
 
 ```
-bash DIR_NAME/out/run-emacs.sh 
+bash DIR_NAME/out/run-emacs.sh
 ```
+
+For VS Code (Tunnels) environments:
+
+```
+bash DIR_NAME/out/run-vscode.sh
+```
+
+On first run, follow the device-code authentication prompt to authorise the tunnel via your GitHub or Microsoft account.
 
 ### 5. Copilot
 
