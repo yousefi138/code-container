@@ -5,9 +5,11 @@ From: ubuntu:24.04
     BASE="/opt/ide"
     EMACS_DIR="$BASE/user-emacs"
     PYTHON_DIR="$BASE/user-python"
+    R_DIR="$BASE/user-R"
 
     mkdir -p $EMACS_DIR
     mkdir -p $PYTHON_DIR
+    mkdir -p $R_DIR
 
     # install linux libraries
     apt-get update -y
@@ -66,6 +68,15 @@ From: ubuntu:24.04
         python3-venv 
     ln -sf /usr/bin/python3 /usr/bin/python
 
+    ## install r
+    wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+    add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu noble-cran40/"
+    apt-get update -y
+    apt-get install -y r-base r-base-dev
+
+    ## install npm and Node.js for copilot
+    apt-get install -y npm nodejs   
+
     # clean up
     apt-get autoremove -y
     apt-get clean
@@ -75,8 +86,12 @@ From: ubuntu:24.04
     export LC_ALL=C
     export BASE="/opt/ide"
     export EMACS_DIR="$BASE/user-emacs"
+    ## needed for python
     export PYTHONPATH="$BASE/user-python"
     export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PYTHONPATH/bin
+    ## needed for R
+    export R_LIBS_USER="$BASE/user-R"
+    export R_LIBS="$R_LIBS_USER"
     ## needed for quarto
     export XDG_CACHE_HOME=/tmp/xdg_cache_home
     export XDG_DATA_HOME=/tmp/xdg_data_home
@@ -84,20 +99,22 @@ From: ubuntu:24.04
  
 %runscript
     mkdir -p $EMACS_DIR
+    mkdir -p $R_LIBS_USER
     mkdir -p $PYTHONPATH
     exec env HOME=$EMACS_DIR emacs --user="" -nw "$@"
     
 %labels
     Author Matthew Suderman
     Version v1.0
-    Description Container with Emacs and Python
+    Description Container with Emacs, Python and R
 
 %help
     This container includes:
     - Ubuntu 24.04
     - Emacs 30.1
     - Python 3.12
+    - R 4.5
 
    Usage:
-	apptainer run -B $BASE:/opt/ide -B $(pwd) py312.sif [path/to/files/to/edit]	
+	apptainer run -B $BASE:/opt/ide -B $(pwd) emacs-pyr2026.sif [path/to/files/to/edit]	
         ## Note: some systems may need the container to run with '--fakeroot'

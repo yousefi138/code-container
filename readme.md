@@ -12,11 +12,11 @@ Create a directory DIR_NAME and populate with definition files:
 
 Prepared examples:
 
-- [Emacs 30.1 with R 4.5](r45)
+- [Emacs 30.1 with R 4.5](emacs-r45)
 
-- [Emacs 30.1 with Python 3.12](py312) 
+- [Emacs 30.1 with Python 3.12](emacs-py312) 
 
-- [Emacs 30.1 with Python 3.12 and R 4.5](pyr2026) 
+- [Emacs 30.1 with Python 3.12 and R 4.5](emacs-pyr2026) 
 
 - [VS Code with Python 3.12 and R 4.5](vscode-pyr2026) (via VS Code Tunnels)
 

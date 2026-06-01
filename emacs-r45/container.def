@@ -99,7 +99,7 @@ From: ubuntu:24.04
     - R 4.5
 
     Usage:
-    	apptainer run -B $BASE:/opt/ide -B $(pwd) r45.sif [path/to/files/to/edit]
+    	apptainer run -B $BASE:/opt/ide -B $(pwd) emacs-r45.sif [path/to/files/to/edit]
         ## Note: some systems may need the container to run with '--fakeroot'
 
 
