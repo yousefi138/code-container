@@ -18,6 +18,8 @@ Prepared examples:
 
 - [Emacs 30.1 with Python 3.12 and R 4.5](pyr2026) 
 
+- [VS Code with Python 3.12 and R 4.5](vscode-pyr2026) (via VS Code Tunnels)
+
 
 ### 2. Build container image
 
@@ -34,6 +36,12 @@ for running emacs in the container.
 
 ```
 bash scripts/prepare.sh DIR_NAME
+```
+
+For VS Code (Tunnels) environments, use:
+
+```
+bash scripts/prepare-vscode.sh DIR_NAME
 ```
 
 ### 4. Run emacs in the container
